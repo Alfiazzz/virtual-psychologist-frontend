@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Виртуальный психолог | AI-аватар</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Хедер -->
+        <header class="header">
+            <h1 class="title">Виртуальный психолог</h1>
+            <p class="subtitle">Бережный разговор. Без осуждения. Ты не один.</p>
+        </header>
+
+        <!-- Основная зона с аватаром -->
+        <div class="avatar-container">
+            <div id="avatar-placeholder" class="avatar-placeholder">
+                <div class="loading-spinner"></div>
+                <p>Загрузка аватара...</p>
+            </div>
+        </div>
+
+        <!-- Статус (слушает / говорит) -->
+        <div class="status-indicator" id="status">
+            <span class="status-dot"></span>
+            <span class="status-text">Готов к разговору</span>
+        </div>
+
+        <!-- Кнопка управления микрофоном -->
+        <div class="controls">
+            <button id="mic-button" class="mic-button">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 16c-2.206 0-4-1.794-4-4V6c0-2.206 1.794-4 4-4s4 1.794 4 4v6c0 2.206-1.794 4-4 4z" fill="currentColor"/>
+                    <path d="M19 10v2c0 3.866-3.134 7-7 7s-7-3.134-7-7v-2" stroke="currentColor" fill="none"/>
+                    <path d="M12 21v2" stroke="currentColor"/>
+                </svg>
+            </button>
+            <p class="mic-hint">Нажми и говори</p>
+        </div>
+
+        <!-- Субтитры (текст ответа психолога) -->
+        <div class="subtitles" id="subtitles">
+            <p id="subtitle-text">Нажми на микрофон и расскажи, что тебя тревожит</p>
+        </div>
+
+        <!-- Безопасность (кнопка телефона доверия) -->
+        <div class="safety-button" id="safety-button" style="display: none;">
+            <a href="tel:88002000122" class="helpline-link">
+                📞 Телефон доверия: 8-800-2000-122
+            </a>
+        </div>
+
+        <!-- Кнопка завершения сессии -->
+        <button id="end-session" class="end-session">Завершить разговор</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+Add main HTML page with avatar
