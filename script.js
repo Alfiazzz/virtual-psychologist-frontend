@@ -3,7 +3,7 @@
 // ============================================
 const CONFIG = {
     // URL вашего бэкенда на Vercel (ЗАМЕНИТЕ НА ВАШ!)
-    BACKEND_URL: 'https://virtual-psychologist-backend.vercel.app/api/chat',
+    BACKEND_URL: 'https://virtual-psychologist-backend.vercel.app',
     
     // Выберите провайдера аватара: 'anam', 'tavus', 'none'
     AVATAR_PROVIDER: 'none',  // none - пока без аватара, только голос
