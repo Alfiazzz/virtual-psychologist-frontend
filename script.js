@@ -230,11 +230,24 @@ async function init() {
         updateStatus('Готов к новому разговору', '');
     });
     
-    // Проверка поддержки микрофона
+      // Более надежная проверка поддержки микрофона
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        updateSubtitle('⚠️ Ваш браузер не поддерживает микрофон. Используйте Chrome, Edge или Safari.');
+        updateSubtitle('❌ Ваш браузер не поддерживает Web Speech API. Пожалуйста, обновите Chrome, Edge или Safari.');
         micButton.disabled = true;
-        micButton.style.opacity = '0.5';
+    } else {
+        // Запрашиваем разрешение заранее, чтобы убедиться, что всё работает
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(function(stream) {
+                // Разрешение получено, можно работать
+                stream.getTracks().forEach(track => track.stop());
+                updateSubtitle('Нажми на микрофон и расскажи, что тебя тревожит');
+                console.log('Микрофон работает');
+            })
+            .catch(function(err) {
+                // Пользователь запретил или ошибка
+                updateSubtitle('⚠️ Нет доступа к микрофону. Разрешите доступ в браузере и обновите страницу.');
+                micButton.disabled = true;
+            });
     }
     
     // Проверка поддержки Speech Synthesis
