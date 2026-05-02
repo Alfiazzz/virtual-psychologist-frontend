@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Виртуальный психолог | Тёмная тема</title>
+    <title>Виртуальный психолог | Яркий стиль</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +13,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
-            background: #0a0f1a;
+            background: linear-gradient(145deg, #eef2f5 0%, #e2e6ea 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -24,12 +23,12 @@
             overflow-x: hidden;
         }
 
-        /* Тёмные цветные ауры */
-        .dark-aura {
+        /* Цветные ауры на фоне */
+        .color-aura {
             position: fixed;
             width: 70vw;
             height: 70vw;
-            background: radial-gradient(circle, rgba(41, 98, 255, 0.1), transparent 70%);
+            background: radial-gradient(circle, rgba(41, 98, 255, 0.12), transparent 70%);
             border-radius: 50%;
             top: -20%;
             right: -10%;
@@ -38,11 +37,11 @@
             animation: drift1 25s infinite alternate;
         }
 
-        .dark-aura-2 {
+        .color-aura-2 {
             position: fixed;
             width: 80vw;
             height: 80vw;
-            background: radial-gradient(circle, rgba(232, 93, 55, 0.08), transparent 70%);
+            background: radial-gradient(circle, rgba(232, 93, 55, 0.1), transparent 70%);
             border-radius: 50%;
             bottom: -30%;
             left: -15%;
@@ -61,30 +60,29 @@
             100% { transform: translate(-50px, 60px) scale(1.15); opacity: 0.5; }
         }
 
-        /* Главная карточка — тёмное стекло */
-        .dark-card {
+        /* Главная карточка — цветное стекло */
+        .color-card {
             position: relative;
             z-index: 2;
             max-width: 640px;
             width: 100%;
-            background: rgba(18, 24, 36, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(20px);
             border-radius: 48px;
-            border: 1px solid rgba(60, 80, 120, 0.4);
-            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.12);
             transition: all 0.35s ease;
         }
 
-        .dark-card:hover {
-            box-shadow: 0 28px 50px -22px rgba(0, 0, 0, 0.6);
-            border-color: rgba(45, 74, 138, 0.6);
+        .color-card:hover {
+            box-shadow: 0 28px 50px -22px rgba(0, 0, 0, 0.18);
         }
 
         .content {
             padding: 44px 38px 48px;
         }
 
-        /* Заголовок — светлый градиент */
+        /* Заголовок — с цветным акцентом */
         .title-section {
             text-align: center;
             margin-bottom: 42px;
@@ -94,7 +92,7 @@
             font-size: 32px;
             font-weight: 600;
             letter-spacing: -0.6px;
-            background: linear-gradient(135deg, #6b9eff, #3d6ad6);
+            background: linear-gradient(135deg, #1a2a5e, #2d4a8a);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -104,15 +102,15 @@
         .title-section .divider {
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, #3d6ad6, #e85d37, #3d6ad6);
+            background: linear-gradient(90deg, #2d4a8a, #e85d37, #2d4a8a);
             margin: 16px auto 12px;
             border-radius: 3px;
         }
 
         .title-section p {
             font-size: 15px;
-            color: #8a9bb0;
-            font-weight: 440;
+            color: #5a6e7a;
+            font-weight: 450;
         }
 
         /* Аватар — с цветной окантовкой */
@@ -135,24 +133,24 @@
             transform: translate(-50%, -50%);
             width: 94px;
             height: 94px;
-            background: linear-gradient(145deg, #1e2a3a, #16202e);
+            background: linear-gradient(145deg, #f0f4f8, #e6ecf2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            border: 2px solid rgba(61, 106, 214, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 2px solid rgba(45, 74, 138, 0.3);
         }
 
         .avatar svg {
             width: 52px;
             height: 52px;
-            fill: #6b9eff;
-            opacity: 0.95;
+            fill: #2d4a8a;
+            opacity: 0.9;
         }
 
-        /* Волны звука */
+        /* Волны звука — цветные */
         .sound-waves {
             position: absolute;
             top: 50%;
@@ -170,7 +168,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
-            border: 1.5px solid rgba(61, 106, 214, 0.5);
+            border: 1.5px solid rgba(45, 74, 138, 0.5);
         }
 
         .wave-ring.active {
@@ -182,7 +180,7 @@
             100% { width: 240px; height: 240px; opacity: 0; }
         }
 
-        /* Статус */
+        /* Статус — цветной */
         .status {
             text-align: center;
             margin-bottom: 28px;
@@ -192,7 +190,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(45, 74, 138, 0.15);
+            background: rgba(45, 74, 138, 0.06);
             padding: 5px 18px;
             border-radius: 50px;
         }
@@ -201,12 +199,12 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #6b9eff;
+            background: #2d4a8a;
             transition: all 0.2s;
         }
 
         .status-dot.listening {
-            background: #6b9eff;
+            background: #2d4a8a;
             animation: dotPulse 1.4s infinite;
         }
 
@@ -223,30 +221,30 @@
         .status-text {
             font-size: 13px;
             font-weight: 500;
-            color: #9aadc4;
+            color: #2d4a8a;
             letter-spacing: 0.2px;
         }
 
-        /* Субтитры */
+        /* Субтитры — цветной акцент */
         .subtitles {
-            background: rgba(30, 40, 55, 0.6);
+            background: rgba(45, 74, 138, 0.04);
             border-radius: 32px;
             padding: 22px 28px;
             margin-bottom: 34px;
             min-height: 100px;
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(61, 106, 214, 0.2);
+            border: 1px solid rgba(45, 74, 138, 0.15);
         }
 
         .subtitle-text {
             font-size: 17px;
             line-height: 1.48;
-            color: #ccdcef;
+            color: #2c3e50;
             text-align: center;
             font-weight: 440;
         }
 
-        /* Кнопка микрофона — вращающееся кольцо */
+        /* Кнопка микрофона — цветное вращающееся кольцо */
         .mic-section {
             position: relative;
             text-align: center;
@@ -261,8 +259,8 @@
             width: 118px;
             height: 118px;
             border-radius: 50%;
-            border: 1.5px solid rgba(232, 93, 55, 0.4);
-            background: repeating-conic-gradient(from 0deg, rgba(232, 93, 55, 0.08) 0deg, rgba(61, 106, 214, 0.08) 25deg, rgba(232, 93, 55, 0.08) 50deg);
+            border: 1.5px solid rgba(232, 93, 55, 0.35);
+            background: repeating-conic-gradient(from 0deg, rgba(232, 93, 55, 0.08) 0deg, rgba(45, 74, 138, 0.08) 25deg, rgba(232, 93, 55, 0.08) 50deg);
             animation: rotateRing 10s linear infinite;
             pointer-events: none;
             z-index: 0;
@@ -279,16 +277,16 @@
             width: 84px;
             height: 84px;
             border-radius: 50%;
-            background: rgba(25, 35, 50, 0.9);
-            border: 1.5px solid rgba(61, 106, 214, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid rgba(45, 74, 138, 0.3);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
         .mic-button:hover {
             transform: scale(1.02);
-            background: rgba(35, 50, 70, 0.95);
+            background: rgba(255, 255, 255, 1);
             border-color: rgba(232, 93, 55, 0.5);
         }
 
@@ -307,7 +305,7 @@
         .mic-button svg {
             width: 34px;
             height: 34px;
-            fill: #6b9eff;
+            fill: #2d4a8a;
             transition: fill 0.2s;
         }
 
@@ -327,7 +325,7 @@
         .end-session {
             background: transparent;
             border: none;
-            color: #6a7c92;
+            color: #8a9aab;
             cursor: pointer;
             font-size: 12px;
             transition: all 0.2s;
@@ -339,8 +337,8 @@
         }
 
         .end-session:hover {
-            color: #6b9eff;
-            background: rgba(61, 106, 214, 0.1);
+            color: #2d4a8a;
+            background: rgba(45, 74, 138, 0.05);
         }
 
         .safety-button {
@@ -350,8 +348,8 @@
 
         .helpline-link {
             display: inline-block;
-            background: rgba(232, 93, 55, 0.12);
-            color: #e8855f;
+            background: rgba(232, 93, 55, 0.1);
+            color: #e85d37;
             padding: 8px 20px;
             border-radius: 40px;
             text-decoration: none;
@@ -361,14 +359,14 @@
         }
 
         .helpline-link:hover {
-            background: rgba(232, 93, 55, 0.2);
-            color: #f09a78;
+            background: rgba(232, 93, 55, 0.18);
+            color: #c94d2a;
         }
 
         .disclaimer {
             text-align: center;
             font-size: 11px;
-            color: #4a5a6e;
+            color: #bcc9d2;
             margin-top: 28px;
             letter-spacing: 0.2px;
         }
@@ -399,10 +397,10 @@
     </style>
 </head>
 <body>
-    <div class="dark-aura"></div>
-    <div class="dark-aura-2"></div>
+    <div class="color-aura"></div>
+    <div class="color-aura-2"></div>
 
-    <div class="dark-card">
+    <div class="color-card">
         <div class="content">
             <div class="title-section">
                 <h1>Виртуальный психолог</h1>
@@ -617,3 +615,9 @@
     </script>
 </body>
 </html>
+
+
+  
+     
+
+
