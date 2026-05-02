@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+
+
+              <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Виртуальный психолог | New Luxury</title>
+    <title>Виртуальный психолог | Яркий стиль</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +15,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
-            background: #eae6df;
+            background: linear-gradient(145deg, #eef2f5 0%, #e2e6ea 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -23,73 +25,66 @@
             overflow-x: hidden;
         }
 
-        /* Фон с глубокой текстурой */
-        .bg-texture {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(#d6cdc0 1px, transparent 1px);
-            background-size: 48px 48px;
-            opacity: 0.3;
-            z-index: -2;
-        }
-
-        .gradient-aura {
-            position: fixed;
-            width: 80vw;
-            height: 80vw;
-            background: radial-gradient(circle, rgba(170, 180, 150, 0.2), transparent 70%);
-            border-radius: 50%;
-            top: -30%;
-            right: -20%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: slowDrift 28s infinite alternate;
-        }
-
-        .gradient-aura-2 {
+        /* Цветные ауры на фоне */
+        .color-aura {
             position: fixed;
             width: 70vw;
             height: 70vw;
-            background: radial-gradient(circle, rgba(130, 120, 100, 0.15), transparent 70%);
+            background: radial-gradient(circle, rgba(41, 98, 255, 0.12), transparent 70%);
+            border-radius: 50%;
+            top: -20%;
+            right: -10%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: drift1 25s infinite alternate;
+        }
+
+        .color-aura-2 {
+            position: fixed;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(232, 93, 55, 0.1), transparent 70%);
             border-radius: 50%;
             bottom: -30%;
-            left: -20%;
+            left: -15%;
             filter: blur(90px);
             z-index: -1;
-            animation: slowDrift 32s infinite alternate-reverse;
+            animation: drift2 30s infinite alternate-reverse;
         }
 
-        @keyframes slowDrift {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-            100% { transform: translate(80px, 50px) scale(1.15); opacity: 0.7; }
+        @keyframes drift1 {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            100% { transform: translate(60px, 40px) scale(1.2); opacity: 0.6; }
         }
 
-        /* Главная карточка — лаконичное стекло */
-        .luxury-card {
+        @keyframes drift2 {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+            100% { transform: translate(-50px, 60px) scale(1.15); opacity: 0.5; }
+        }
+
+        /* Главная карточка — цветное стекло */
+        .color-card {
             position: relative;
             z-index: 2;
             max-width: 640px;
             width: 100%;
-            background: rgba(248, 245, 240, 0.82);
-            backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
             border-radius: 48px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.12);
             transition: all 0.35s ease;
         }
 
-        .luxury-card:hover {
-            box-shadow: 0 28px 50px -22px rgba(0, 0, 0, 0.12);
+        .color-card:hover {
+            box-shadow: 0 28px 50px -22px rgba(0, 0, 0, 0.18);
         }
 
         .content {
             padding: 44px 38px 48px;
         }
 
-        /* Заголовок — строгий, но выразительный */
+        /* Заголовок — с цветным акцентом */
         .title-section {
             text-align: center;
             margin-bottom: 42px;
@@ -97,26 +92,30 @@
 
         .title-section h1 {
             font-size: 32px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: -0.6px;
-            color: #2c2823;
+            background: linear-gradient(135deg, #1a2a5e, #2d4a8a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 10px;
         }
 
         .title-section .divider {
-            width: 48px;
-            height: 1.5px;
-            background: #cbc1b5;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #2d4a8a, #e85d37, #2d4a8a);
             margin: 16px auto 12px;
+            border-radius: 3px;
         }
 
         .title-section p {
             font-size: 15px;
-            color: #92897e;
-            font-weight: 400;
+            color: #5a6e7a;
+            font-weight: 450;
         }
 
-        /* Аватар — геометричный, без излишеств (без движущихся элементов) */
+        /* Аватар — с цветной окантовкой */
         .avatar-section {
             display: flex;
             justify-content: center;
@@ -136,24 +135,24 @@
             transform: translate(-50%, -50%);
             width: 94px;
             height: 94px;
-            background: #f0ece7;
+            background: linear-gradient(145deg, #f0f4f8, #e6ecf2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
-            border: 1px solid rgba(180, 170, 155, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 2px solid rgba(45, 74, 138, 0.3);
         }
 
         .avatar svg {
             width: 52px;
             height: 52px;
-            fill: #8f8478;
-            opacity: 0.8;
+            fill: #2d4a8a;
+            opacity: 0.9;
         }
 
-        /* Волны звука (при записи) */
+        /* Волны звука — цветные */
         .sound-waves {
             position: absolute;
             top: 50%;
@@ -171,7 +170,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
-            border: 1px solid rgba(140, 130, 115, 0.4);
+            border: 1.5px solid rgba(45, 74, 138, 0.5);
         }
 
         .wave-ring.active {
@@ -179,11 +178,11 @@
         }
 
         @keyframes waveExpand {
-            0% { width: 94px; height: 94px; opacity: 0.5; }
+            0% { width: 94px; height: 94px; opacity: 0.6; }
             100% { width: 240px; height: 240px; opacity: 0; }
         }
 
-        /* Статус */
+        /* Статус — цветной */
         .status {
             text-align: center;
             margin-bottom: 28px;
@@ -193,26 +192,26 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(120, 110, 95, 0.05);
+            background: rgba(45, 74, 138, 0.06);
             padding: 5px 18px;
             border-radius: 50px;
         }
 
         .status-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: #9aa58d;
+            background: #2d4a8a;
             transition: all 0.2s;
         }
 
         .status-dot.listening {
-            background: #9aa58d;
+            background: #2d4a8a;
             animation: dotPulse 1.4s infinite;
         }
 
         .status-dot.speaking {
-            background: #c9ad8a;
+            background: #e85d37;
         }
 
         @keyframes dotPulse {
@@ -223,49 +222,48 @@
 
         .status-text {
             font-size: 13px;
-            font-weight: 460;
-            color: #8c8277;
+            font-weight: 500;
+            color: #2d4a8a;
             letter-spacing: 0.2px;
         }
 
-        /* Субтитры */
+        /* Субтитры — цветной акцент */
         .subtitles {
-            background: rgba(245, 242, 237, 0.7);
+            background: rgba(45, 74, 138, 0.04);
             border-radius: 32px;
             padding: 22px 28px;
             margin-bottom: 34px;
             min-height: 100px;
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(200, 190, 175, 0.3);
+            border: 1px solid rgba(45, 74, 138, 0.15);
         }
 
         .subtitle-text {
             font-size: 17px;
             line-height: 1.48;
-            color: #3e3a35;
+            color: #2c3e50;
             text-align: center;
-            font-weight: 410;
+            font-weight: 440;
         }
 
-        /* Зона кнопки микрофона — здесь будет вращающееся кольцо */
+        /* Кнопка микрофона — цветное вращающееся кольцо */
         .mic-section {
             position: relative;
             text-align: center;
             margin-bottom: 28px;
         }
 
-        /* Вращающееся кольцо вокруг кнопки */
         .rotating-ring {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
+            width: 118px;
+            height: 118px;
             border-radius: 50%;
-            border: 1px solid rgba(150, 140, 125, 0.25);
-            background: repeating-conic-gradient(from 0deg, rgba(150, 140, 125, 0.05) 0deg, rgba(150, 140, 125, 0) 20deg);
-            animation: rotateRing 12s linear infinite;
+            border: 1.5px solid rgba(232, 93, 55, 0.35);
+            background: repeating-conic-gradient(from 0deg, rgba(232, 93, 55, 0.08) 0deg, rgba(45, 74, 138, 0.08) 25deg, rgba(232, 93, 55, 0.08) 50deg);
+            animation: rotateRing 10s linear infinite;
             pointer-events: none;
             z-index: 0;
         }
@@ -281,55 +279,55 @@
             width: 84px;
             height: 84px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.75);
-            border: 1px solid rgba(140, 130, 115, 0.2);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid rgba(45, 74, 138, 0.3);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            backdrop-filter: blur(6px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
         .mic-button:hover {
-            transform: scale(1.01);
-            background: rgba(255, 255, 255, 0.88);
-            border-color: rgba(140, 130, 115, 0.4);
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 1);
+            border-color: rgba(232, 93, 55, 0.5);
         }
 
         .mic-button.active {
-            background: #ece5de;
-            border-color: #bfb09e;
+            background: linear-gradient(145deg, #2d4a8a, #1a3568);
+            border-color: #e85d37;
             animation: micRipple 1.3s infinite;
         }
 
         @keyframes micRipple {
-            0% { box-shadow: 0 0 0 0 rgba(160, 140, 120, 0.2); }
-            50% { box-shadow: 0 0 0 14px rgba(160, 140, 120, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(160, 140, 120, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(232, 93, 55, 0.3); }
+            50% { box-shadow: 0 0 0 14px rgba(232, 93, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(232, 93, 55, 0); }
         }
 
         .mic-button svg {
             width: 34px;
             height: 34px;
-            fill: #9a8e82;
+            fill: #2d4a8a;
             transition: fill 0.2s;
         }
 
         .mic-button.active svg {
-            fill: #6f6458;
+            fill: white;
         }
 
         .mic-hint {
             font-size: 12px;
-            color: #b3a89c;
+            color: #7a8e9c;
             margin-top: 14px;
             letter-spacing: 0.2px;
+            font-weight: 450;
         }
 
         /* Кнопка завершения */
         .end-session {
             background: transparent;
             border: none;
-            color: #b0a494;
+            color: #8a9aab;
             cursor: pointer;
             font-size: 12px;
             transition: all 0.2s;
@@ -341,8 +339,8 @@
         }
 
         .end-session:hover {
-            color: #7b7166;
-            background: rgba(0, 0, 0, 0.02);
+            color: #2d4a8a;
+            background: rgba(45, 74, 138, 0.05);
         }
 
         .safety-button {
@@ -352,24 +350,25 @@
 
         .helpline-link {
             display: inline-block;
-            background: rgba(170, 130, 110, 0.07);
-            color: #b38d76;
+            background: rgba(232, 93, 55, 0.1);
+            color: #e85d37;
             padding: 8px 20px;
             border-radius: 40px;
             text-decoration: none;
             font-size: 12px;
+            font-weight: 480;
             transition: all 0.2s;
         }
 
         .helpline-link:hover {
-            background: rgba(170, 130, 110, 0.12);
-            color: #9a765f;
+            background: rgba(232, 93, 55, 0.18);
+            color: #c94d2a;
         }
 
         .disclaimer {
             text-align: center;
             font-size: 11px;
-            color: #cdc2b6;
+            color: #bcc9d2;
             margin-top: 28px;
             letter-spacing: 0.2px;
         }
@@ -400,11 +399,10 @@
     </style>
 </head>
 <body>
-    <div class="bg-texture"></div>
-    <div class="gradient-aura"></div>
-    <div class="gradient-aura-2"></div>
+    <div class="color-aura"></div>
+    <div class="color-aura-2"></div>
 
-    <div class="luxury-card">
+    <div class="color-card">
         <div class="content">
             <div class="title-section">
                 <h1>Виртуальный психолог</h1>
