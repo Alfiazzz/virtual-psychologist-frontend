@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Виртуальный психолог | Яркий стиль</title>
+    <title>Виртуальный психолог | Яркий с усиленной анимацией</title>
     <style>
         * {
             margin: 0;
@@ -13,117 +13,103 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
-            background: linear-gradient(145deg, #eef2f5 0%, #e2e6ea 100%);
+            background: linear-gradient(135deg, #e8eef5 0%, #dce4f0 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* Цветные ауры на фоне */
-        .color-aura {
+        /* Яркие фоновые ауры */
+        .bg-aura-blue {
             position: fixed;
-            width: 70vw;
-            height: 70vw;
-            background: radial-gradient(circle, rgba(41, 98, 255, 0.12), transparent 70%);
-            border-radius: 50%;
-            top: -20%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(0, 112, 243, 0.15), transparent 70%);
+            top: -15%;
             right: -10%;
-            filter: blur(80px);
-            z-index: -1;
-            animation: drift1 25s infinite alternate;
-        }
-
-        .color-aura-2 {
-            position: fixed;
-            width: 80vw;
-            height: 80vw;
-            background: radial-gradient(circle, rgba(232, 93, 55, 0.1), transparent 70%);
             border-radius: 50%;
-            bottom: -30%;
+            pointer-events: none;
+            z-index: 0;
+            animation: auraFloat 12s infinite alternate;
+        }
+
+        .bg-aura-orange {
+            position: fixed;
+            width: 55vw;
+            height: 55vw;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.12), transparent 70%);
+            bottom: -20%;
             left: -15%;
-            filter: blur(90px);
-            z-index: -1;
-            animation: drift2 30s infinite alternate-reverse;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: auraFloat 14s infinite alternate-reverse;
         }
 
-        @keyframes drift1 {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-            100% { transform: translate(60px, 40px) scale(1.2); opacity: 0.6; }
+        @keyframes auraFloat {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+            100% { transform: translate(40px, 30px) scale(1.1); opacity: 0.7; }
         }
 
-        @keyframes drift2 {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
-            100% { transform: translate(-50px, 60px) scale(1.15); opacity: 0.5; }
-        }
-
-        /* Главная карточка — цветное стекло */
-        .color-card {
+        /* Карточка */
+        .bright-card {
             position: relative;
             z-index: 2;
-            max-width: 640px;
+            max-width: 620px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(20px);
-            border-radius: 48px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.12);
-            transition: all 0.35s ease;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0, 112, 243, 0.15);
+            transition: all 0.3s ease;
         }
 
-        .color-card:hover {
-            box-shadow: 0 28px 50px -22px rgba(0, 0, 0, 0.18);
+        .bright-card:hover {
+            box-shadow: 0 24px 48px -16px rgba(0, 112, 243, 0.25);
+            border-color: rgba(0, 112, 243, 0.35);
         }
 
         .content {
-            padding: 44px 38px 48px;
+            padding: 44px 40px 48px;
         }
 
-        /* Заголовок — с цветным акцентом */
+        /* Заголовок — яркий градиент */
         .title-section {
             text-align: center;
-            margin-bottom: 42px;
+            margin-bottom: 44px;
         }
 
         .title-section h1 {
             font-size: 32px;
-            font-weight: 600;
+            font-weight: 650;
             letter-spacing: -0.6px;
-            background: linear-gradient(135deg, #1a2a5e, #2d4a8a);
+            background: linear-gradient(135deg, #0070f3, #ff6b35);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 10px;
         }
 
-        .title-section .divider {
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #2d4a8a, #e85d37, #2d4a8a);
-            margin: 16px auto 12px;
-            border-radius: 3px;
-        }
-
         .title-section p {
             font-size: 15px;
-            color: #5a6e7a;
-            font-weight: 450;
+            color: #4a5b7a;
+            font-weight: 460;
         }
 
-        /* Аватар — с цветной окантовкой */
+        /* Аватар — с яркой обводкой */
         .avatar-section {
             display: flex;
             justify-content: center;
-            margin-bottom: 34px;
+            margin-bottom: 36px;
         }
 
         .avatar-container {
             position: relative;
-            width: 128px;
-            height: 128px;
+            width: 120px;
+            height: 120px;
         }
 
         .avatar {
@@ -131,33 +117,33 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 94px;
-            height: 94px;
-            background: linear-gradient(145deg, #f0f4f8, #e6ecf2);
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(145deg, #f0f4fe, #e8edf8);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            border: 2px solid rgba(45, 74, 138, 0.3);
+            border: 2px solid #0070f3;
+            box-shadow: 0 4px 12px rgba(0, 112, 243, 0.15);
         }
 
         .avatar svg {
-            width: 52px;
-            height: 52px;
-            fill: #2d4a8a;
+            width: 48px;
+            height: 48px;
+            fill: #0070f3;
             opacity: 0.9;
         }
 
-        /* Волны звука — цветные */
+        /* Волны звука */
         .sound-waves {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 190px;
-            height: 190px;
+            width: 200px;
+            height: 200px;
             pointer-events: none;
             z-index: 1;
         }
@@ -168,7 +154,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             border-radius: 50%;
-            border: 1.5px solid rgba(45, 74, 138, 0.5);
+            border: 2px solid rgba(0, 112, 243, 0.6);
         }
 
         .wave-ring.active {
@@ -176,81 +162,82 @@
         }
 
         @keyframes waveExpand {
-            0% { width: 94px; height: 94px; opacity: 0.6; }
-            100% { width: 240px; height: 240px; opacity: 0; }
+            0% { width: 88px; height: 88px; opacity: 0.7; }
+            100% { width: 250px; height: 250px; opacity: 0; }
         }
 
-        /* Статус — цветной */
+        /* Статус */
         .status {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(45, 74, 138, 0.06);
-            padding: 5px 18px;
-            border-radius: 50px;
+            background: #eef3fc;
+            padding: 5px 20px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 112, 243, 0.25);
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #2d4a8a;
+            background: #0070f3;
             transition: all 0.2s;
         }
 
         .status-dot.listening {
-            background: #2d4a8a;
+            background: #0070f3;
             animation: dotPulse 1.4s infinite;
         }
 
         .status-dot.speaking {
-            background: #e85d37;
+            background: #ff6b35;
         }
 
         @keyframes dotPulse {
             0% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
+            50% { opacity: 1; transform: scale(1.4); box-shadow: 0 0 6px #0070f3; }
             100% { opacity: 0.5; transform: scale(1); }
         }
 
         .status-text {
             font-size: 13px;
-            font-weight: 500;
-            color: #2d4a8a;
-            letter-spacing: 0.2px;
+            font-weight: 530;
+            color: #0070f3;
         }
 
-        /* Субтитры — цветной акцент */
+        /* Субтитры */
         .subtitles {
-            background: rgba(45, 74, 138, 0.04);
-            border-radius: 32px;
+            background: #f8faff;
+            border-radius: 28px;
             padding: 22px 28px;
-            margin-bottom: 34px;
+            margin-bottom: 36px;
             min-height: 100px;
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(45, 74, 138, 0.15);
+            border: 1px solid rgba(0, 112, 243, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
         }
 
         .subtitle-text {
             font-size: 17px;
             line-height: 1.48;
-            color: #2c3e50;
+            color: #1a2a4a;
             text-align: center;
-            font-weight: 440;
+            font-weight: 450;
         }
 
-        /* Кнопка микрофона — цветное вращающееся кольцо */
+        /* Кнопка микрофона — с усиленным динамическим кругом */
         .mic-section {
             position: relative;
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
+        /* Единый вращающийся круг — яркий, с чёткими линиями */
         .rotating-ring {
             position: absolute;
             top: 50%;
@@ -259,16 +246,35 @@
             width: 118px;
             height: 118px;
             border-radius: 50%;
-            border: 1.5px solid rgba(232, 93, 55, 0.35);
-            background: repeating-conic-gradient(from 0deg, rgba(232, 93, 55, 0.08) 0deg, rgba(45, 74, 138, 0.08) 25deg, rgba(232, 93, 55, 0.08) 50deg);
-            animation: rotateRing 10s linear infinite;
+            background: radial-gradient(circle, rgba(0, 112, 243, 0.05), transparent);
+            border: 2px solid rgba(0, 112, 243, 0.5);
+            box-shadow: 0 0 8px rgba(0, 112, 243, 0.4);
+            animation: rotateRing 4s linear infinite;
             pointer-events: none;
             z-index: 0;
         }
 
         @keyframes rotateRing {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+            from { transform: translate(-50%, -50%) rotate(0deg); box-shadow: 0 0 8px rgba(0, 112, 243, 0.4); }
+            to { transform: translate(-50%, -50%) rotate(360deg); box-shadow: 0 0 20px rgba(0, 112, 243, 0.7); }
+        }
+
+        /* Добавляем второй, более динамичный слой */
+        .rotating-ring::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(255, 107, 53, 0.6);
+            animation: rotateRingReverse 3s linear infinite;
+        }
+
+        @keyframes rotateRingReverse {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
         }
 
         .mic-button {
@@ -277,35 +283,35 @@
             width: 84px;
             height: 84px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1.5px solid rgba(45, 74, 138, 0.3);
+            background: white;
+            border: 2px solid #0070f3;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .mic-button:hover {
             transform: scale(1.02);
-            background: rgba(255, 255, 255, 1);
-            border-color: rgba(232, 93, 55, 0.5);
+            border-color: #ff6b35;
+            box-shadow: 0 6px 18px rgba(255, 107, 53, 0.2);
         }
 
         .mic-button.active {
-            background: linear-gradient(145deg, #2d4a8a, #1a3568);
-            border-color: #e85d37;
+            background: #ff6b35;
+            border-color: #ff6b35;
             animation: micRipple 1.3s infinite;
         }
 
         @keyframes micRipple {
-            0% { box-shadow: 0 0 0 0 rgba(232, 93, 55, 0.3); }
-            50% { box-shadow: 0 0 0 14px rgba(232, 93, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(232, 93, 55, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.5); }
+            50% { box-shadow: 0 0 0 18px rgba(255, 107, 53, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
         }
 
         .mic-button svg {
             width: 34px;
             height: 34px;
-            fill: #2d4a8a;
+            fill: #0070f3;
             transition: fill 0.2s;
         }
 
@@ -315,30 +321,28 @@
 
         .mic-hint {
             font-size: 12px;
-            color: #7a8e9c;
+            color: #6a7f9f;
             margin-top: 14px;
-            letter-spacing: 0.2px;
-            font-weight: 450;
+            font-weight: 480;
         }
 
-        /* Кнопка завершения */
         .end-session {
             background: transparent;
             border: none;
-            color: #8a9aab;
+            color: #8a9aba;
             cursor: pointer;
             font-size: 12px;
             transition: all 0.2s;
             width: fit-content;
             margin: 0 auto;
             display: block;
-            padding: 4px 14px;
-            border-radius: 40px;
+            padding: 6px 16px;
+            border-radius: 30px;
         }
 
         .end-session:hover {
-            color: #2d4a8a;
-            background: rgba(45, 74, 138, 0.05);
+            color: #ff6b35;
+            background: rgba(255, 107, 53, 0.08);
         }
 
         .safety-button {
@@ -348,27 +352,26 @@
 
         .helpline-link {
             display: inline-block;
-            background: rgba(232, 93, 55, 0.1);
-            color: #e85d37;
+            background: rgba(255, 107, 53, 0.1);
+            color: #ff6b35;
             padding: 8px 20px;
-            border-radius: 40px;
+            border-radius: 30px;
             text-decoration: none;
             font-size: 12px;
-            font-weight: 480;
+            font-weight: 520;
             transition: all 0.2s;
         }
 
         .helpline-link:hover {
-            background: rgba(232, 93, 55, 0.18);
-            color: #c94d2a;
+            background: rgba(255, 107, 53, 0.18);
+            color: #e05a2a;
         }
 
         .disclaimer {
             text-align: center;
             font-size: 11px;
-            color: #bcc9d2;
+            color: #b0c0d4;
             margin-top: 28px;
-            letter-spacing: 0.2px;
         }
 
         @media (max-width: 550px) {
@@ -390,21 +393,24 @@
                 height: 108px;
             }
             .avatar {
-                width: 82px;
-                height: 82px;
+                width: 78px;
+                height: 78px;
+            }
+            .avatar svg {
+                width: 42px;
+                height: 42px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="color-aura"></div>
-    <div class="color-aura-2"></div>
+    <div class="bg-aura-blue"></div>
+    <div class="bg-aura-orange"></div>
 
-    <div class="color-card">
+    <div class="bright-card">
         <div class="content">
             <div class="title-section">
                 <h1>Виртуальный психолог</h1>
-                <div class="divider"></div>
                 <p>Бережный разговор. Без осуждения. Ты не один.</p>
             </div>
 
@@ -615,9 +621,4 @@
     </script>
 </body>
 </html>
-
-
-  
-     
-
 
