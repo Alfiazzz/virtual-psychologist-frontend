@@ -3,60 +3,619 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Виртуальный психолог | AI-аватар</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Виртуальный психолог | New Luxury</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+            background: #eae6df;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Фон с глубокой текстурой */
+        .bg-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#d6cdc0 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.3;
+            z-index: -2;
+        }
+
+        .gradient-aura {
+            position: fixed;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(170, 180, 150, 0.2), transparent 70%);
+            border-radius: 50%;
+            top: -30%;
+            right: -20%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: slowDrift 28s infinite alternate;
+        }
+
+        .gradient-aura-2 {
+            position: fixed;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(130, 120, 100, 0.15), transparent 70%);
+            border-radius: 50%;
+            bottom: -30%;
+            left: -20%;
+            filter: blur(90px);
+            z-index: -1;
+            animation: slowDrift 32s infinite alternate-reverse;
+        }
+
+        @keyframes slowDrift {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+            100% { transform: translate(80px, 50px) scale(1.15); opacity: 0.7; }
+        }
+
+        /* Главная карточка — лаконичное стекло */
+        .luxury-card {
+            position: relative;
+            z-index: 2;
+            max-width: 640px;
+            width: 100%;
+            background: rgba(248, 245, 240, 0.82);
+            backdrop-filter: blur(24px);
+            border-radius: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            transition: all 0.35s ease;
+        }
+
+        .luxury-card:hover {
+            box-shadow: 0 28px 50px -22px rgba(0, 0, 0, 0.12);
+        }
+
+        .content {
+            padding: 44px 38px 48px;
+        }
+
+        /* Заголовок — строгий, но выразительный */
+        .title-section {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .title-section h1 {
+            font-size: 32px;
+            font-weight: 500;
+            letter-spacing: -0.6px;
+            color: #2c2823;
+            margin-bottom: 10px;
+        }
+
+        .title-section .divider {
+            width: 48px;
+            height: 1.5px;
+            background: #cbc1b5;
+            margin: 16px auto 12px;
+        }
+
+        .title-section p {
+            font-size: 15px;
+            color: #92897e;
+            font-weight: 400;
+        }
+
+        /* Аватар — геометричный, без излишеств (без движущихся элементов) */
+        .avatar-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 34px;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 128px;
+            height: 128px;
+        }
+
+        .avatar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 94px;
+            height: 94px;
+            background: #f0ece7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(180, 170, 155, 0.3);
+        }
+
+        .avatar svg {
+            width: 52px;
+            height: 52px;
+            fill: #8f8478;
+            opacity: 0.8;
+        }
+
+        /* Волны звука (при записи) */
+        .sound-waves {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 190px;
+            height: 190px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .wave-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(140, 130, 115, 0.4);
+        }
+
+        .wave-ring.active {
+            animation: waveExpand 0.6s ease-out forwards;
+        }
+
+        @keyframes waveExpand {
+            0% { width: 94px; height: 94px; opacity: 0.5; }
+            100% { width: 240px; height: 240px; opacity: 0; }
+        }
+
+        /* Статус */
+        .status {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(120, 110, 95, 0.05);
+            padding: 5px 18px;
+            border-radius: 50px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #9aa58d;
+            transition: all 0.2s;
+        }
+
+        .status-dot.listening {
+            background: #9aa58d;
+            animation: dotPulse 1.4s infinite;
+        }
+
+        .status-dot.speaking {
+            background: #c9ad8a;
+        }
+
+        @keyframes dotPulse {
+            0% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+            100% { opacity: 0.5; transform: scale(1); }
+        }
+
+        .status-text {
+            font-size: 13px;
+            font-weight: 460;
+            color: #8c8277;
+            letter-spacing: 0.2px;
+        }
+
+        /* Субтитры */
+        .subtitles {
+            background: rgba(245, 242, 237, 0.7);
+            border-radius: 32px;
+            padding: 22px 28px;
+            margin-bottom: 34px;
+            min-height: 100px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(200, 190, 175, 0.3);
+        }
+
+        .subtitle-text {
+            font-size: 17px;
+            line-height: 1.48;
+            color: #3e3a35;
+            text-align: center;
+            font-weight: 410;
+        }
+
+        /* Зона кнопки микрофона — здесь будет вращающееся кольцо */
+        .mic-section {
+            position: relative;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        /* Вращающееся кольцо вокруг кнопки */
+        .rotating-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1px solid rgba(150, 140, 125, 0.25);
+            background: repeating-conic-gradient(from 0deg, rgba(150, 140, 125, 0.05) 0deg, rgba(150, 140, 125, 0) 20deg);
+            animation: rotateRing 12s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes rotateRing {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .mic-button {
+            position: relative;
+            z-index: 1;
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(140, 130, 115, 0.2);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .mic-button:hover {
+            transform: scale(1.01);
+            background: rgba(255, 255, 255, 0.88);
+            border-color: rgba(140, 130, 115, 0.4);
+        }
+
+        .mic-button.active {
+            background: #ece5de;
+            border-color: #bfb09e;
+            animation: micRipple 1.3s infinite;
+        }
+
+        @keyframes micRipple {
+            0% { box-shadow: 0 0 0 0 rgba(160, 140, 120, 0.2); }
+            50% { box-shadow: 0 0 0 14px rgba(160, 140, 120, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(160, 140, 120, 0); }
+        }
+
+        .mic-button svg {
+            width: 34px;
+            height: 34px;
+            fill: #9a8e82;
+            transition: fill 0.2s;
+        }
+
+        .mic-button.active svg {
+            fill: #6f6458;
+        }
+
+        .mic-hint {
+            font-size: 12px;
+            color: #b3a89c;
+            margin-top: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        /* Кнопка завершения */
+        .end-session {
+            background: transparent;
+            border: none;
+            color: #b0a494;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+            width: fit-content;
+            margin: 0 auto;
+            display: block;
+            padding: 4px 14px;
+            border-radius: 40px;
+        }
+
+        .end-session:hover {
+            color: #7b7166;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .safety-button {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .helpline-link {
+            display: inline-block;
+            background: rgba(170, 130, 110, 0.07);
+            color: #b38d76;
+            padding: 8px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .helpline-link:hover {
+            background: rgba(170, 130, 110, 0.12);
+            color: #9a765f;
+        }
+
+        .disclaimer {
+            text-align: center;
+            font-size: 11px;
+            color: #cdc2b6;
+            margin-top: 28px;
+            letter-spacing: 0.2px;
+        }
+
+        @media (max-width: 550px) {
+            .content {
+                padding: 32px 24px 40px;
+            }
+            .title-section h1 {
+                font-size: 27px;
+            }
+            .subtitle-text {
+                font-size: 15px;
+            }
+            .mic-button {
+                width: 74px;
+                height: 74px;
+            }
+            .rotating-ring {
+                width: 108px;
+                height: 108px;
+            }
+            .avatar {
+                width: 82px;
+                height: 82px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Хедер -->
-        <header class="header">
-            <h1 class="title">Виртуальный психолог</h1>
-            <p class="subtitle">Бережный разговор. Без осуждения. Ты не один.</p>
-        </header>
+    <div class="bg-texture"></div>
+    <div class="gradient-aura"></div>
+    <div class="gradient-aura-2"></div>
 
-        <!-- Основная зона с аватаром -->
-        <div class="avatar-container">
-            <div id="avatar-placeholder" class="avatar-placeholder">
-                <div class="loading-spinner"></div>
-                <p>Загрузка аватара...</p>
+    <div class="luxury-card">
+        <div class="content">
+            <div class="title-section">
+                <h1>Виртуальный психолог</h1>
+                <div class="divider"></div>
+                <p>Бережный разговор. Без осуждения. Ты не один.</p>
+            </div>
+
+            <div class="avatar-section">
+                <div class="avatar-container">
+                    <div class="sound-waves" id="soundWaves"></div>
+                    <div class="avatar">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status">
+                <div class="status-badge">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span class="status-text" id="statusText">Готов к разговору</span>
+                </div>
+            </div>
+
+            <div class="subtitles">
+                <div class="subtitle-text" id="subtitleText">
+                    Нажми на микрофон и расскажи, что тебя тревожит
+                </div>
+            </div>
+
+            <div class="mic-section">
+                <div class="rotating-ring"></div>
+                <button class="mic-button" id="micButton">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 16c-2.206 0-4-1.794-4-4V6c0-2.206 1.794-4 4-4s4 1.794 4 4v6c0 2.206-1.794 4-4 4z"/>
+                        <path d="M19 10v2c0 3.866-3.134 7-7 7s-7-3.134-7-7v-2"/>
+                        <path d="M12 21v2"/>
+                    </svg>
+                </button>
+                <div class="mic-hint">Нажми и говори</div>
+            </div>
+
+            <div class="safety-button" id="safetyButton" style="display: none;">
+                <a href="tel:88002000122" class="helpline-link">
+                    📞 Телефон доверия: 8-800-2000-122
+                </a>
+            </div>
+
+            <button class="end-session" id="endSessionButton">Завершить разговор</button>
+
+            <div class="disclaimer">
+                Виртуальный помощник, не заменяет профессиональную помощь
             </div>
         </div>
-
-        <!-- Статус (слушает / говорит) -->
-        <div class="status-indicator" id="status">
-            <span class="status-dot"></span>
-            <span class="status-text">Готов к разговору</span>
-        </div>
-
-        <!-- Кнопка управления микрофоном -->
-        <div class="controls">
-            <button id="mic-button" class="mic-button">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 16c-2.206 0-4-1.794-4-4V6c0-2.206 1.794-4 4-4s4 1.794 4 4v6c0 2.206-1.794 4-4 4z" fill="currentColor"/>
-                    <path d="M19 10v2c0 3.866-3.134 7-7 7s-7-3.134-7-7v-2" stroke="currentColor" fill="none"/>
-                    <path d="M12 21v2" stroke="currentColor"/>
-                </svg>
-            </button>
-            <p class="mic-hint">Нажми и говори</p>
-        </div>
-
-        <!-- Субтитры (текст ответа психолога) -->
-        <div class="subtitles" id="subtitles">
-            <p id="subtitle-text">Нажми на микрофон и расскажи, что тебя тревожит</p>
-        </div>
-
-        <!-- Безопасность (кнопка телефона доверия) -->
-        <div class="safety-button" id="safety-button" style="display: none;">
-            <a href="tel:88002000122" class="helpline-link">
-                📞 Телефон доверия: 8-800-2000-122
-            </a>
-        </div>
-
-        <!-- Кнопка завершения сессии -->
-        <button id="end-session" class="end-session">Завершить разговор</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const CONFIG = {
+            BACKEND_URL: 'https://ваш-бэкенд.vercel.app/api/chat',
+            SESSION_ID: generateSessionId()
+        };
+
+        let isRecording = false;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let sessionId = CONFIG.SESSION_ID;
+
+        const micButton = document.getElementById('micButton');
+        const statusText = document.getElementById('statusText');
+        const statusDot = document.getElementById('statusDot');
+        const subtitleElement = document.getElementById('subtitleText');
+        const safetyButton = document.getElementById('safetyButton');
+        const endSessionButton = document.getElementById('endSessionButton');
+        const soundWaves = document.getElementById('soundWaves');
+
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function updateStatus(text, state) {
+            statusText.textContent = text;
+            statusDot.className = 'status-dot';
+            if (state === 'listening') statusDot.classList.add('listening');
+            else if (state === 'speaking') statusDot.classList.add('speaking');
+        }
+
+        function updateSubtitle(text, isUser = false) {
+            subtitleElement.textContent = text;
+            subtitleElement.style.opacity = isUser ? '0.7' : '1';
+        }
+
+        function addWaveRing() {
+            const ring = document.createElement('div');
+            ring.className = 'wave-ring active';
+            soundWaves.appendChild(ring);
+            setTimeout(() => ring.remove(), 600);
+        }
+
+        function showSafetyHelpline() { safetyButton.style.display = 'block'; }
+        function hideSafetyHelpline() { safetyButton.style.display = 'none'; }
+
+        async function sendToBackend(userMessage) {
+            try {
+                updateStatus('Психолог думает', 'speaking');
+                updateSubtitle('...');
+                
+                const response = await fetch(CONFIG.BACKEND_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userMessage, sessionId })
+                });
+                
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                const data = await response.json();
+                if (data.isCrisis) showSafetyHelpline();
+                else hideSafetyHelpline();
+                
+                updateSubtitle(data.response);
+                speakResponse(data.response);
+            } catch (error) {
+                console.error('Backend error:', error);
+                updateSubtitle('Извини, произошла ошибка. Попробуй ещё раз.');
+                speakResponse('Извини, произошла ошибка. Попробуй ещё раз.');
+            }
+        }
+
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                
+                mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+                mediaRecorder.onstop = async () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    await processAudio(audioBlob);
+                    stream.getTracks().forEach(track => track.stop());
+                };
+                
+                mediaRecorder.start();
+                isRecording = true;
+                micButton.classList.add('active');
+                updateStatus('Слушаю', 'listening');
+                updateSubtitle('🎙️ Говорите...');
+                
+                const interval = setInterval(() => {
+                    if (isRecording) addWaveRing();
+                    else clearInterval(interval);
+                }, 340);
+            } catch (error) {
+                updateSubtitle('Не могу получить доступ к микрофону. Проверь разрешения.');
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                isRecording = false;
+                micButton.classList.remove('active');
+            }
+        }
+
+        async function processAudio(audioBlob) {
+            updateStatus('Распознаю речь', 'listening');
+            const userText = prompt('🎤 Демо-режим\n\nВведите то, что вы сказали:');
+            if (userText?.trim()) {
+                updateSubtitle(userText, true);
+                await sendToBackend(userText);
+            } else {
+                updateStatus('Готов к разговору', '');
+                updateSubtitle('Не услышал. Нажми микрофон и скажи снова.');
+            }
+        }
+
+        function speakResponse(text) {
+            if ('speechSynthesis' in window) {
+                updateStatus('Психолог говорит', 'speaking');
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ru-RU';
+                utterance.rate = 0.9;
+                utterance.onend = () => updateStatus('Готов к разговору', '');
+                utterance.onerror = () => updateStatus('Готов к разговору', '');
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function init() {
+            micButton.addEventListener('mousedown', startRecording);
+            micButton.addEventListener('mouseup', stopRecording);
+            micButton.addEventListener('mouseleave', stopRecording);
+            micButton.addEventListener('touchstart', startRecording);
+            micButton.addEventListener('touchend', stopRecording);
+            
+            endSessionButton.addEventListener('click', () => {
+                sessionId = generateSessionId();
+                updateSubtitle('Сессия завершена. Начни новый разговор, когда будешь готов.');
+                hideSafetyHelpline();
+                updateStatus('Готов к разговору', '');
+            });
+            
+            if (!navigator.mediaDevices?.getUserMedia) {
+                updateSubtitle('⚠️ Микрофон не поддерживается. Используйте Chrome, Edge или Safari.');
+                micButton.disabled = true;
+                micButton.style.opacity = '0.4';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
-
